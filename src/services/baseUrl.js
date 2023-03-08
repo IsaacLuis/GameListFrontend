@@ -1,0 +1,1 @@
+export const baseUrl = "https://server-project-3.fly.dev"
