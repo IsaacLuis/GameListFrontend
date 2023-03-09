@@ -1,12 +1,15 @@
+import "./details.css";
 import { useContext, useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { LoadingContext } from "../context/loading.context";
 import axios from "axios";
-import "./details.css";
+
 import {baseUrl} from '../services/baseUrl'
+import { useNavigate } from "react-router-dom";
+
 const GameDetail = () => {
     const { id } = useParams();
-
+    const navigate = useNavigate();
     const {
         gameDetails,
         games,
@@ -43,7 +46,9 @@ const GameDetail = () => {
 
     const handleAddToWishlist = (user, game) => {
 
-        console.log("user ", user,gameDetails.id)
+        if(user !== null)
+       {
+         console.log("user Det ", user,gameDetails.id)
         axios.post(`${baseUrl}/games/add-wish/${user._id}`, { game: game })
           .then((response) => {
             console.log('Response picked game ',response.data);
@@ -54,6 +59,14 @@ const GameDetail = () => {
           .catch((error) => {
             console.log(error);
           });
+        }
+          else {
+
+            navigate('/login')
+          }      
+                  
+                
+
       };
     
 

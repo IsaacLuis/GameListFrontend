@@ -20,29 +20,37 @@ const Library = () => {
       
     },[user])
 
+// ${baseUrl}/games/delete/add-wish/${user._id}
 
-    const handleAddToWishlistDelete = (user, game) => {
-      axios.post(`http://localhost:4000/games/delete/add-wish/${user._id}`, { game: game })
-        .then((response) => {
-          console.log('Game deleted', response.data);
-          setUser(response.data)
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
-      };
+const handleAddToWishlistDelete = (user, game) => {
+  axios
+    .post(`${baseUrl}/games/delete/add-wish/${user._id}`, { gameId: game.id })
+    .then((response) => {
+      console.log("Game deleted", response.data);
+      setUser(response.data);
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+};
 
     return (
-        
-        <div className="parentLib">
+       
             
+               
+          
+        <div> 
+          <h1>My List</h1>
+        <div className="parentLib">
+                
           {user  ? (
             <>
+                 
               <h1> {console.log('Wish in library inside', user)}</h1>
               
                {user.games_pick.map((game) => (
-                <div className="game-card-container" key={game.id}>
-                  <div className="game-card">
+                <div className="game-card-container-lib" key={game.id}>
+                  <div className="game-card-lib">
                      <Link onClick={() => setDetails(game)} to={`/games/${game.id}`}>
                       <img src={game.background_image} alt="Gameimg" />
                     </Link> 
@@ -68,7 +76,9 @@ const Library = () => {
                       </li>
                     </ul>
                   </div>
-                  <button onClick={() => handleAddToWishlistDelete(user, game)}>Delete</button>
+                  <div> 
+                  <button className="check-button" onClick={() => handleAddToWishlistDelete(user, game)}><a className="check-button-a">Finish</a></button> 
+                  </div>     
                 </div>
               ))}
           
@@ -77,6 +87,8 @@ const Library = () => {
             <p>No games found in your wishlist.</p>
           )}
         </div>
+        </div>
+        
       );
     };
 
