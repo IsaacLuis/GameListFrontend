@@ -70,6 +70,8 @@ const GameDetail = () => {
       };
     
 
+
+      
     return (
         <>
             {gameDetails ? (

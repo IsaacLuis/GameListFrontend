@@ -21,6 +21,12 @@ const LoadingProvider = ({ children }) => {
   const [search, setSearch] = useState('');
   const [wish, setWish] = useState([]);
 
+
+  
+
+  const [editing, setEditing] = useState(false);
+
+
   const setTimedMessage = (newMessage) => {
     setMessage(newMessage);
     setTimeout(() => {
@@ -203,7 +209,8 @@ const LoadingProvider = ({ children }) => {
     <LoadingContext.Provider value={{
       isLoading, noGame, getGameScreen, page, page_size, setPage, getNewGames, gameDetails, setGameDetails,
       gameDetailsScreen, setGameDetailsScreen, gamesParams, setGamesParams, games, getGames, message, setUser,
-      user, setIsLoading, setMessage, setTimedMessage, search, setSearch, SearchGame, wish, setWish
+      user, setIsLoading, setMessage, setTimedMessage, search, setSearch, SearchGame, wish, setWish,
+      editing, setEditing
     }} >
       {children}
 
