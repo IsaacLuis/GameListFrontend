@@ -94,3 +94,7 @@
   }
   
 
+
+  .commentArea {
+    resize: none;
+  }

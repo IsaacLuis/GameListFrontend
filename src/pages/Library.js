@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { baseUrl } from "../services/baseUrl";
-import { post } from "../services/authService";
+import { post, get } from "../services/authService";
 
 const Library = () => {
   const { user, setDetails, setUser } = useContext(LoadingContext);
@@ -20,9 +20,6 @@ const Library = () => {
     // authenticateUser();
   }, [user]);
 
-  console.log(user);
-  // ${baseUrl}/games/delete/add-wish/${user._id}
-
   const handleAddToWishlistDelete = (user, game) => {
     console.log(game);
     axios
@@ -35,6 +32,20 @@ const Library = () => {
         console.log(error.message);
       });
   };
+
+  console.log(user);
+  // ${baseUrl}/games/delete/add-wish/${user._id}
+
+  const handleCommentDelete = (gameId) => {
+    get(`/games/reviews/${gameId}/${user._id}`)
+      .then((results) => {
+        console.log(results.data, "deleted");
+        setUser(results.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }; 
   // console.log(
   //   user.games_pick.map((game) => {
   //     console.log(game);
@@ -95,12 +106,36 @@ const Library = () => {
                   >
                     <label>
                       Comment:
-                      <textarea
-                        name="review"
-                        onChange={(event) => setReview(event.target.value)}
-                      />
+                     
                     </label>
-                    <button>Comment</button>
+                    {game.isCommented ? (
+                        <textarea
+                          disabled
+                          className="commentArea"
+                          placeholder="leave a review"
+                          name="review"
+                          onChange={(event) => setReview(event.target.value)}
+                        />
+                      ) : (
+                        <textarea
+                          className="commentArea"
+                          placeholder="leave a review"
+                          name="review"
+                          onChange={(event) => setReview(event.target.value)}
+                        />
+                      )}
+                    
+                    <button>comment</button>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleCommentDelete(game.id);
+                      }}
+                    >
+                      Delete
+                    </button>
+
+                    
                   </form>
                 </div>
                 <button
