@@ -9,7 +9,7 @@ import { LoadingContext } from "../context/loading.context"
 
 const PopularGames = () => {
 
-    const {  games, popularGamesCall, setDetails}
+    const {  gamesPop, popularGamesCall, setDetails}
         = useContext(LoadingContext)
 
         useEffect(() => {
@@ -28,10 +28,10 @@ const PopularGames = () => {
     <div className="parentImg">
      
       <br />
-      {games && console.log("Games PopularGames ", games)}
-      {games ?
+   
+      {gamesPop ?
         <>
-          {games.map((game) => {
+          {gamesPop.map((game) => {
 
 
             return (

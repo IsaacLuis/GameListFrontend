@@ -19,6 +19,7 @@ const GameDetail = () => {
     getGameScreen,
     user,
     setUser,
+    
   } = useContext(LoadingContext);
 
   const carouselRef = useRef(null);
@@ -28,7 +29,7 @@ const GameDetail = () => {
     console.log("this is the id", id);
     noGame(id);
     //  }
-
+    // getGameSeries(id);
     getGameScreen(id);
     console.log("this is the id 2", id);
   }, [id]);
@@ -51,7 +52,7 @@ const GameDetail = () => {
       navigate("/login");
     }
   };
-
+ 
   return (
     <>
       {gameDetails ? (
@@ -104,11 +105,20 @@ const GameDetail = () => {
           </div> 
         
         </div>
+      
+                           
+      
+      
+      
       ) : (
         <h4>Loading...</h4>
       )}
     </>
+        
+
+        
   );
+  
 };
 
 export default GameDetail; 
