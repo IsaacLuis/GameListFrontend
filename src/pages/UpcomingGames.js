@@ -25,7 +25,7 @@ const Upcoming = () => {
   return (
     <div>
         <hr></hr>
-       <h1>Coming Soon</h1>
+       <h1>New games</h1>
     <div className="parentImg">
      
       <br />
