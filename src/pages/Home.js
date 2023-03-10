@@ -1,13 +1,29 @@
 
 
+import { useEffect, createContext, useContext, useState } from "react";
+import { Link } from "react-router-dom";
+
+import { LoadingContext } from "../context/loading.context"
+import PopularGames from "./PoularGames";
+import Upcoming from "./UpcomingGames";
+
+
 const Home = () => {
 
-    return (
-        <div>
-                <h1>Home </h1>
+    const {  games, popularGamesCall, setDetails}
+        = useContext(LoadingContext)
 
-        </div>
-    )
+ 
+
+
+    
+  return (
+    <div> 
+   <PopularGames/>  
+    <Upcoming/>
+    </div>
+  )
+
 }
 
 export default Home

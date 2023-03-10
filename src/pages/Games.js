@@ -32,7 +32,7 @@ const Games = () => {
       getGames()
     }
 
-  }, [])
+  }, []) 
 
   // useEffect(() => {
   //   // if(page > 1){

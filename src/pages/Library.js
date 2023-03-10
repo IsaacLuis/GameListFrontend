@@ -57,50 +57,39 @@ const Library = () => {
   };
   console.log(user);
   return (
-    <div>
-      <h1>My List</h1>
-      <div className="parentLib">
-        {user ? (
-          <>
-            {/* <h1> {console.log("Wish in library inside", user)}</h1> */}
-
-            {user.games_pick.map((game) => (
-              <div className="game-card-container-lib" key={game.id}>
-                <div className="game-card-lib">
-                  {/* <Link
-                    onClick={() => setDetails(game)}
-                    to={`/games/${game.id}`}
-                  > */}
+    <div className="library-container">
+    <h1>My List</h1>
+    <div className="parentLib">
+      {user ? (
+        <>
+          {user.games_pick.map((game) => (
+            <div className="game-card-container-lib" key={game.id}>
+              <div className="game-card-lib">
+                <Link
+                  onClick={() => setDetails(game)}
+                  to={`/games/${game.id}`}
+                >
                   <img src={game.background_image} alt="Gameimg" />
-                  {/* </Link> */}
+                </Link>
+                <div className="game-info">
                   <h2>{game.name}</h2>
                   <ul>
-                    {/* {game.genres.length && (
-                      <li>
-                        <strong>Genre </strong> {game.genres[0].name}
-                      </li>
-                    )} */}
                     <li>
-                      <strong>Rating </strong>
-                      {game.rating}
-                    </li>
-
-                    <li>
-                      <strong>Playtime </strong>
-                      {game.playtime} hrs
+                      <strong>Rating:</strong> {game.metacritic}
                     </li>
                     <li>
-                      <strong>Released: </strong>
-                      {game.released}
+                      <strong>Released:</strong> {game.released}
                     </li>
                   </ul>
-                  user: {user.name}
-                  comment: {game.review && game.review.comment}
-
+                  {game.review && (
+                    <div className="game-review">
+                      <strong>Comment:</strong> {game.review.comment}
+                    </div>
+                  )}
                   <form
+                    className="game-comment-form"
                     onSubmit={(e) => {
                       e.preventDefault();
-                      console.log(game._id);
                       handleCommentSubmit(game._id);
                     }}
                   >
@@ -111,25 +100,24 @@ const Library = () => {
                         onChange={(event) => setReview(event.target.value)}
                       />
                     </label>
-                    <button>comment</button>
+                    <button>Comment</button>
                   </form>
                 </div>
-                <div>
-                  <button
-                    className="check-button"
-                    onClick={() => handleAddToWishlistDelete(user, game.id)}
-                  >
-                    <a className="check-button-a">Finish</a>
-                  </button>
-                </div>
+                <button
+                  className="check-button"
+                  onClick={() => handleAddToWishlistDelete(user, game.id)}
+                >
+                  <span className="check-button-text">Finish</span>
+                </button>
               </div>
-            ))}
-          </>
-        ) : (
-          <p>No games found in your wishlist.</p>
-        )}
-      </div>
+            </div>
+          ))}
+        </>
+      ) : (
+        <p>No games found in your wishlist.</p>
+      )}
     </div>
+  </div>
   );
 };
 

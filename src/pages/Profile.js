@@ -87,11 +87,11 @@ const Profile = () => {
 
 
   return (
-    <div>
-      <div>
-        {editing ? (
-          <form encType="multipart/form-data" onSubmit={handleSave}>
-            <div>
+    <div className="profile-container">
+    <div className="profile-details">
+      {editing ? (
+        <form className="profile-edit-form" encType="multipart/form-data" onSubmit={handleSave}>
+          <div className="form-group">
             <label htmlFor="profile_image">Image:</label>
             <input
               type="file"
@@ -99,51 +99,57 @@ const Profile = () => {
               name="profile_image"
               className="form-control-file"
               onChange={handleFileSubmit}
-             
             />
-            </div>
-            <div>
-              <label>Bio</label>
-              <textarea
-                name="bio"
-                value={profile.bio}
-                onChange={handleInputChange}
-              ></textarea>
-            </div>
-            <div>
-              <label>Age</label>
-              <input
-                type="text"
-                name="age"
-                value={profile.age}
-                onChange={handleInputChange}
-              />
-            </div>
-            <button type="submit">Save</button>
-            <button onClick={handleCancel}>Cancel</button>
-          </form>
-        ) : (
-          <div>
-            <div>
-              <img
-                src={user ? user.profile_image : <p>no image</p>}
-                alt="Profile"
-                style={{ width: "150px" }}
-              />
-            </div>
-            <div>
-              <h2>Bio</h2>
-              {user ? user.bio : <p>no bio</p>}
-            </div>
-            <div>
-              <h2>Age</h2>
-              {user ? user.age : <p>no age</p>}
-            </div>
-            <button onClick={handleEdit}>Edit Profile</button>
           </div>
-        )}
-      </div>
+          <div className="form-group">
+            <label htmlFor="bio">Bio:</label>
+            <textarea
+              id="bio"
+              name="bio"
+              value={profile.bio}
+              onChange={handleInputChange}
+              className="form-control"
+            ></textarea>
+          </div>
+          <div className="form-group">
+            <label htmlFor="age">Age:</label>
+            <input
+              type="text"
+              id="age"
+              name="age"
+              value={profile.age}
+              onChange={handleInputChange}
+              className="form-control"
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">Save</button>
+          <button onClick={handleCancel} className="btn btn-secondary">Cancel</button>
+        </form>
+      ) : (
+        <div>
+          <div className="profile-image">
+            <img
+              src={user ? user.profile_image : <p>no image</p>}
+              alt="Profile"
+              style={{ width: "150px" }}
+            />
+          </div>
+          <div className="bio">
+            <h2>Bio:</h2>
+            {user ? user.bio : <p>no bio</p>}
+          </div>
+          <div className="age">
+            <h2>Age:</h2>
+            {user ? user.age : <p>no age</p>}
+          </div>
+          <button onClick={handleEdit} className="btn btn-primary">Edit Profile</button>
+        </div>
+      )}
     </div>
+  </div>
+  
+  
+  
   );
 };
 

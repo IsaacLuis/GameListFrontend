@@ -59,7 +59,7 @@ const GameDetail = () => {
           <div className="game-detail-image">
             <img src={gameDetails.background_image} alt={gameDetails.name} />
           </div>
-          <button onClick={() => handleAddToWishlist(user, gameDetails)}>
+          <button className="check-button2" onClick={() => handleAddToWishlist(user, gameDetails)}>
             Next to play
           </button>
           <div className="game-detail-info">
@@ -101,7 +101,8 @@ const GameDetail = () => {
                 </div>
               </div>
             )}
-          </div>
+          </div> 
+        
         </div>
       ) : (
         <h4>Loading...</h4>

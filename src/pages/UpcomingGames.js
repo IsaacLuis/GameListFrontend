@@ -7,15 +7,15 @@ import { LoadingContext } from "../context/loading.context"
 
 
 
-const PopularGames = () => {
+const Upcoming = () => {
 
-    const {  games, popularGamesCall, setDetails}
+    const {  gamesComing, upcomingGameCall, setDetails}
         = useContext(LoadingContext)
 
         useEffect(() => {
             
                 
-             popularGamesCall()
+            upcomingGameCall()
             
         
           }, []) 
@@ -24,14 +24,15 @@ const PopularGames = () => {
     
   return (
     <div>
-       <h1>Popular Games</h1>
+        <hr></hr>
+       <h1>Coming Soon</h1>
     <div className="parentImg">
      
       <br />
-      {games && console.log("Games PopularGames ", games)}
-      {games ?
+      
+      {gamesComing ?
         <>
-          {games.map((game) => {
+          {gamesComing.map((game) => {
 
 
             return (
@@ -94,4 +95,4 @@ const PopularGames = () => {
 
 }
 
-export default PopularGames
+export default Upcoming

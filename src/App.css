@@ -65,6 +65,7 @@
     
     color: #000000; 
   }
+
   .check-button::after {
     content: "";
     position: absolute;
@@ -92,3 +93,4 @@
     color: transparent; /* Hide the button text on hover */
   }
   
+

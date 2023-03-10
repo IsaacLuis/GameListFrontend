@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../context/auth.context"
 import { post } from "../services/authService"
 
+import '../pages/details.css'
+
+
 
 const Login = () => {
 
@@ -40,22 +43,24 @@ const Login = () => {
             })
     } 
 
-    return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Email</label>
-                <input type='email' name="email" value={thisUser.email} onChange={handleChange}></input>
-
-                <label>Password</label>
-                <input type='password' name="password" value={thisUser.password} onChange={handleChange}></input>
-
-                <button type="submit">Login</button>
-
-            </form>
-
+    
+  return (
+    <div className="login-container">
+      <h1>Login</h1>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input type="email" id="email" name="email" value={thisUser.email} onChange={handleChange} />
         </div>
-    )
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <input type="password" id="password" name="password" value={thisUser.password} onChange={handleChange} />
+        </div>
+        <button type="submit" className="btn-btn-primary">Login</button>
+      </form>
+    </div>
+  );
+
 }
 
 export default Login

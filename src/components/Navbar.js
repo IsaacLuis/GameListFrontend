@@ -19,7 +19,7 @@ const Navbar = () => {
     return (
         <nav>
 
-            <Link to={'/'}>Home</Link>
+            <Link to={'/'}>Trending</Link>
             <Link to={'/games'}>Games</Link>
 
             {

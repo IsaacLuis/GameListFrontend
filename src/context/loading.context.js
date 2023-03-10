@@ -11,7 +11,8 @@ const LoadingProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState('');
-  const [games, setGames] = useState(null);
+  const [games, setGames] = useState([]);
+  const [gamesComing,SetGamesComing] = useState([])
   const [gamesParams, setGamesParams] = useState(1);
   const [page, setPage] = useState(1); // current page number
   const [page_size, setPageSize] = useState(20); // number of games per page
@@ -183,6 +184,64 @@ const LoadingProvider = ({ children }) => {
 
   }
 
+//Getting the Month
+  const getCurrentMonth = () => {
+    const month = new Date().getMonth() + 1;
+    if (month < 10) {
+      return `0${month}`;
+    } else {
+      return month;
+    }
+  };
+
+  //Getting the date
+  const getCurrentDay = () => {
+    const day = new Date().getDate();
+    if (day < 10) {
+      return `0${day}`;
+    } else {
+      return day;
+    }
+  };
+  
+  //Current day/month/year
+  const currentYear = new Date().getFullYear();
+  const currentMonth = getCurrentMonth();
+  const currentDay = getCurrentDay();
+  const currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
+  const lastYear = `${currentYear - 1}-${currentMonth}-${currentDay}`;
+  const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
+  
+  //Popular Games
+  const popular_games = `games?key=${API_KEY}&dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`;
+  const upcoming_games = `games?key=${API_KEY}&dates=${currentDate},${nextYear}&ordering=-added&page_size=10`;
+  const newGames = `games?key=${API_KEY}&dates=${lastYear},${currentDate}&ordering=-released&page_size=10`;
+  
+
+  const popularGamesCall = () => {
+    axios.get(`https://api.rawg.io/api/${popular_games}`)
+      .then(response => {
+        console.log('RESPONSE GAMES ==>', response.data);
+       // setGameDetailsScreen(response.data)
+       setGames(response.data.results)
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  const upcomingGameCall = () => {
+    axios.get(`https://api.rawg.io/api/${upcoming_games}`)
+      .then(response => {
+        console.log('RESPONSE GAMES ==>', response.data);
+       // setGameDetailsScreen(response.data)
+       SetGamesComing(response.data.results)
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
 
 
   // const getParams = async () => {
@@ -210,7 +269,7 @@ const LoadingProvider = ({ children }) => {
       isLoading, noGame, getGameScreen, page, page_size, setPage, getNewGames, gameDetails, setGameDetails,
       gameDetailsScreen, setGameDetailsScreen, gamesParams, setGamesParams, games, getGames, message, setUser,
       user, setIsLoading, setMessage, setTimedMessage, search, setSearch, SearchGame, wish, setWish,
-      editing, setEditing
+      editing, setEditing, popularGamesCall, upcomingGameCall, SetGamesComing ,gamesComing
     }} >
       {children}
 

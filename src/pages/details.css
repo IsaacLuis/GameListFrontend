@@ -77,3 +77,166 @@
     border-radius: 10px;
     margin-right: 20px;
   }
+
+  .check-button2 {
+    position: relative;
+    
+    top: 1rem;
+    right: 1rem;
+    padding: 1rem;
+    border: none;
+    background-color: #fff;
+    
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease;
+
+    
+    color: #000000; 
+  }
+  .check-button2::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2.5em;
+    height: 2.5em;
+    border: 0.2em solid #fff;
+    border-top: none;
+    border-right: none;
+    transform-origin: center;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  }
+  
+  .check-button2:hover::after {
+    background-image: url('/public/images/check3.png'); 
+    background-size: contain;
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  
+  .check-button2:hover {
+    color: transparent; /* Hide the button text on hover */
+  }
+  
+
+  
+
+/* Login */
+
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="email"],
+  input[type="password"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+
+
+
+  
+
+  button {
+
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+
+  }
+  
+  
+  
+/* Sing in */
+
+  
+  
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+  }
+  
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  label {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    
+  }
+  
+  .btn-btn-primary, .Signupbtn {
+    width: 100%;
+    margin-top: 2rem;
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #a8a4a4;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .btn-btn-primary:hover, .Signupbtn:hover {
+    background-color: #0062cc;
+  }
+  
+  .btn-btn-primary:active, .Signupbtn:active {
+    background-color: #005cbf;
+  }
+
+
+  
