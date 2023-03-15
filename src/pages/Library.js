@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { baseUrl } from "../services/baseUrl";
 import { post, get } from "../services/authService";
+import SeriesGames from "./SeriesGames";
 
 const Library = () => {
   const { user, setDetails, setUser } = useContext(LoadingContext);
@@ -145,7 +146,11 @@ const Library = () => {
                   <span className="check-button-text">Finish</span>
                 </button>
               </div>
+              {/* <Link to= {<SeriesGames id={game.id}/>} > More Like this </Link>
+                    */}
+
             </div>
+             
           ))}
         </>
       ) : (

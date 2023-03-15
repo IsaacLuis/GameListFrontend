@@ -14,6 +14,7 @@ const LoadingProvider = ({ children }) => {
   const [games, setGames] = useState(null);
   const [gamesComing,SetGamesComing] = useState(null)
   const [gamesPop,SetGamesPop] = useState(null)
+  const [gamesSeries, SetGamesSeries] = useState(null)
   const [gamesParams, setGamesParams] = useState(1);
   const [page, setPage] = useState(1); // current page number
   const [page_size, setPageSize] = useState(20); // number of games per page
@@ -125,17 +126,21 @@ const LoadingProvider = ({ children }) => {
   }
 
  
-  // const getGameSeries = (id) => {
-  //   axios.get(`https://api.rawg.io/api/games/${id}/game-series?key=${API_KEY}&page_size=10`)
-  //     .then(response => {
-  //       console.log('RESPONSE Series', response.data.results);
+  const getGameSeries = (id) => {
+    axios.get(`https://api.rawg.io/api/games/${id}/game-series?key=${API_KEY}&page_size=3`)
+      .then(response => {
+        console.log('RESPONSE Series', response.data.results);
         
-  //       SetGamesSeries(response.data.results)
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // } 
+        // const newSeries = response.data.results;
+        // const updatedSeries = [...gamesSeries, ...newSeries];
+        // SetGamesSeries(updatedSeries);
+          SetGamesSeries(response.data.results)
+
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  } 
 
 
 ///games/{game_pk}/game-series
@@ -285,7 +290,8 @@ const LoadingProvider = ({ children }) => {
       isLoading, noGame, getGameScreen, page, page_size, setPage, getNewGames, gameDetails, setGameDetails,
       gameDetailsScreen, setGameDetailsScreen, gamesParams, setGamesParams, games, getGames, message, setUser,
       user, setIsLoading, setMessage, setTimedMessage, search, setSearch, SearchGame, wish, setWish,
-      editing, setEditing, popularGamesCall, upcomingGameCall, SetGamesComing ,gamesComing, SetGamesPop, gamesPop, 
+      editing, setEditing, popularGamesCall, upcomingGameCall, SetGamesComing ,gamesComing, SetGamesPop, gamesPop,
+      getGameSeries, gamesSeries 
       
     }} >
       {children}
